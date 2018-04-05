@@ -1,0 +1,13 @@
+project(firstcpp)
+cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+SET(CMAKE_BUILD_TYPE Debug)
+find_package(PCL 1.7 REQUIRED)
+find_package(OpenCV REQUIRED)
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+add_executable(firstcpp PointCloudOpt.cpp main.cpp)
+target_link_libraries (firstcpp ${PCL_LIBRARIES} opencv_core opencv_imgproc opencv_calib3d opencv_video opencv_features2d opencv_ml opencv_highgui opencv_objdetect opencv_contrib opencv_legacy )
+
+add_executable(plygeneration plyfileGeneration.cpp rply.c)
+target_link_libraries (plygeneration ${PCL_LIBRARIES} opencv_core opencv_imgproc opencv_calib3d opencv_video opencv_features2d opencv_ml opencv_highgui opencv_objdetect opencv_contrib opencv_legacy )
