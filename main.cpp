@@ -24,22 +24,39 @@ int main(int argc, char ** argv)
     //point cloud operation.   YOU NEED to finish them experimental classes.
     if(atoi(argv[1])==1)
     {
-      reader.read ("bunny_10.ply", pointcloudORI); 
+      tx=atoi(argv[2]);
+      ty=atoi(argv[3]);
+      tz=atoi(argv[4]);
+      reader.read ("bunny_10.ply", pointcloudORI);
       pointcloudMet1 = pco.pointCloudTranslation(pointcloudORI);
     }
     else if(atoi(argv[1])==2)
     {
-      reader.read ("bunny_10.ply", pointcloudORI); 
+      float tmp;
+      tmp=atoi(argv[2]);
+      rot=tmp/180*3.14;
+      reader.read ("bunny_10.ply", pointcloudORI);
       pointcloudMet2 = pco.pointCloudRot(pointcloudORI);
     }
     else if(atoi(argv[1])==3)
     {
-      reader.read ("bunny_10.ply", pointcloudORI); 
+      tx=atoi(argv[2]);
+      ty=atoi(argv[3]);
+      tz=atoi(argv[4]);
+      float tmp;
+      tmp=atoi(argv[5]);
+      rot=tmp/180*3.14;
+      reader.read ("bunny_10.ply", pointcloudORI);
       pointcloudMet3 = pco.pointCloudTransformation(pointcloudORI);
     }
     else if(atoi(argv[1])==4)
     {
-      reader.read ("partation.ply", pointcloudORI); 
+      float tmp;
+      tmp=atoi(argv[2]);
+      rot=tmp/180*3.14;
+      tmp=atoi(argv[3]);
+      rot1=tmp/180*3.14;
+      reader.read ("partation.ply", pointcloudORI);
       pointcloudMet4 = pco.linkageTransformation(pointcloudORI);
     }
     else
@@ -54,19 +71,24 @@ int main(int argc, char ** argv)
     reader.read ("bunny_10.ply", pointcloudORI);
     pointcloudMet = pco.pointCloudOrigin(pointcloudORI);
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color1(pointcloudMet.makeShared(), 255, 0, 0);
-    viewer1.addPointCloud (pointcloudMet.makeShared(), single_color1, "pointcloudMet");
     if(atoi(argv[1])==1)
     {
+      viewer1.addCoordinateSystem(1);
+      viewer1.addPointCloud (pointcloudMet.makeShared(), single_color1, "pointcloudMet");
       pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color1(pointcloudMet1.makeShared(), 0, 255, 0);
       viewer1.addPointCloud (pointcloudMet1.makeShared(), single_color1, "pointcloudMet1");
     }
     else if(atoi(argv[1])==2)
     {
+      viewer1.addCoordinateSystem(1);
+      viewer1.addPointCloud (pointcloudMet.makeShared(), single_color1, "pointcloudMet");
       pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color1(pointcloudMet2.makeShared(), 0, 255, 0);
       viewer1.addPointCloud (pointcloudMet2.makeShared(), single_color1, "pointcloudMet2");
     }
     else if(atoi(argv[1])==3)
     {
+      viewer1.addCoordinateSystem(1);
+      viewer1.addPointCloud (pointcloudMet.makeShared(), single_color1, "pointcloudMet");
       pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color1(pointcloudMet3.makeShared(), 0, 255, 0);
       viewer1.addPointCloud (pointcloudMet3.makeShared(), single_color1, "pointcloudMet3");
     }

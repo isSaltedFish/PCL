@@ -4,7 +4,7 @@
 #include <cv.h>
 #include <highgui.h>
 using namespace std;
-
+extern int tx,ty,tz,rot,rot1;
 class PointCloudOpt
 {
 public:
